@@ -14,6 +14,7 @@ class SortingRobot:
         Returns True if the robot can move right or False if it's
         at the end of the list.
         """
+        
         return self._position < len(self._list) - 1
 
     def can_move_left(self):
@@ -97,8 +98,47 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        #initialize light to on
+        self.set_light_on()
+        
+        #sort while still able
+        while self.light_is_on():
+            #set light off as a termination predicate
+            self.set_light_off()
 
+            #from beginning move right
+            while self.can_move_right():
+                #pick up item at current position
+                #for first pass this will be the 0th item
+                self.swap_item()
+                self.move_right()
+                #if the item being carried is greater then swap the item at the current list position swap them set light to on(continue outer loop)
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.set_light_on()
+                #move back to intial loop position deposit item (will be the original item if the if does not pass)
+                self.move_left()
+                self.swap_item()
+                #move right again the loop will start a position + 1 for the previous loops position
+                self.move_right()
+            
+            #previous loop brings us to the end of list 
+            while self.can_move_left():
+                #pick up item at current position 
+                #for first pass this will be the len(l) -1 (last) item
+                self.swap_item()
+                self.move_left()
+                 #if the item being carried is lesser then swap the item at the current list position swap them set light to on(continue outer loop)
+                if self.compare_item == -1:
+                    self.swap_item()
+                    self.set_light_on()
+                #move back to intial loop position deposit item (will be the original item if the if does not pass)
+                self.move_right()
+                self.swap_item()
+                     #move left again the loop will start a position - 1 for the previous loops position
+                self.move_left()
+
+            ##continue outer loop if an items has changed places through this iteration 
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
