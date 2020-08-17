@@ -15,3 +15,22 @@ O(n)
 ## Exercise II
 
 
+def findFloorF(floors){
+
+    if floors.length === 1:
+        if floors[0].drop() === notBroken"
+            return "floor f is floor[0]"
+        else
+            return "no floor f"
+
+    middle = floors.length // 2
+
+    if floors[middle].drop === notBroken:
+        findFloor([floors[middle +1: len(floors)]])
+    else 
+        findFloor([0: middle -1])
+}
+
+O(log n)
+
+adapted basic recursive binary search to find the uppermost floor where the eggs wont break by split the number of choices in half for each iteration 
